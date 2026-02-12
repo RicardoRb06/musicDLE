@@ -1,12 +1,9 @@
 package com.example.musicDLE.controller;
 
-import org.springframework.web.bind.annotation.Mapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@Mapping("/api")
+@RequestMapping Mapping("/api")
 public class Controller {
 
     @PostMapping("/setArtist")
