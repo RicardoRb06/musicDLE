@@ -1,10 +1,13 @@
 package com.example.musicDLE.service;
 
 import com.example.musicDLE.dto.API.ArtistDto;
+import com.example.musicDLE.dto.API.DefaulsResponseDto;
 import com.example.musicDLE.dto.SelectGameDto;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import org.springframework.stereotype.Service;
-import tools.jackson.databind.ObjectMapper;
 
+import java.lang.reflect.Type;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -13,17 +16,21 @@ import java.net.http.HttpResponse;
 @Service
 public class SelectGameService {
 
+    private final Gson gson = new Gson();
+
     public SelectGameDto<ArtistDto> artistSelect(String name){
         try{
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://api.deezer.com/search/artist?q=" + name)).build();
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-            ObjectMapper mapper = new ObjectMapper();
-            SelectGameDto<ArtistDto> responseDto = new SelectGameDto<>(mapper.readValue(response.body, SelectGameDto<ArtistDto>.class););
-            return responseDto;
+            Type responseType = new TypeToken<DefaulsResponseDto<ArtistDto>>(){}.getType();
+
+            DefaulsResponseDto<ArtistDto> data = gson.fromJson(response.body(), responseType);
+            return new SelectGameDto<ArtistDto>(data.data);
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            return new SelectGameDto<>(java.util.List.of());
         }
     }
 }

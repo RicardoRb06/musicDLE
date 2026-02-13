@@ -3,7 +3,7 @@ const apiUrl = "/api"
 function submit(){
     const text = document.getElementById(`text`).value;
 
-    fetch(apiUrl, {
+    fetch(setArtist, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
