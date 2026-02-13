@@ -20,4 +20,12 @@ public class SelectGameDto<T> {
         if(results.size() == 1) this.status = SearchStatus.SINGLE_RESULT;
         if(results.size() > 1) this.status = SearchStatus.MULTIPLE_RESULTS;
     }
+
+    public SearchStatus getStatus() {
+        return status;
+    }
+
+    public List<T> getResults() {
+        return results;
+    }
 }

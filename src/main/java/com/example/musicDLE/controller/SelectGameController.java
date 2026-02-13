@@ -16,6 +16,6 @@ public class SelectGameController {
 
     @PostMapping("/setArtist")
     public ResponseEntity<String> startArtistGame(@RequestBody String name){
-        return new ResponseEntity<>();
+        return new ResponseEntity.ok(selectGameService.artistSelect(name));
     }
 }
