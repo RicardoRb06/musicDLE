@@ -1,11 +1,11 @@
-package com.example.musicDLE.dto;
+package com.example.musicDLE.dto.API;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.net.URL;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class artistDto {
+public class ArtistDto {
     private int id;
     private String name;
     private URL picture;

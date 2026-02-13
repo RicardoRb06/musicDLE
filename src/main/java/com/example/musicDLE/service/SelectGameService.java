@@ -3,6 +3,7 @@ package com.example.musicDLE.service;
 import org.springframework.stereotype.Service;
 
 @Service
-public class selectGameService {
+public class SelectGameService {
 
+    public
 }
