@@ -1,13 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <input type="text" id="text">
-    <input type="button" onclick="submit()">
+    <div class="searchInput">
+        <input type="text" id="text">
+        <select name="typeText" id="typeText">
+            <option value="artist">Artista</option>
+            <option value="album">Álbum</option>
+        </select>
+        <button onclick="submit()">começar</button>
+    </div>
+    <ul id="searchResults"></ul>
+
 
     <script src="js/api.js"></script>
 </body>
