@@ -1,9 +1,9 @@
 const apiUrl = "/api"
 
-function submit(){
+async function submit(){
     const text = document.getElementById(`text`).value;
 
-    fetch(setArtist, {
+    const response = await fetch("api/searchArtist", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -11,5 +11,7 @@ function submit(){
         body: JSON.stringify({
             text: text
         })
-    })
+    }).then(res => res.json())
+
+    console.log(response)
 }

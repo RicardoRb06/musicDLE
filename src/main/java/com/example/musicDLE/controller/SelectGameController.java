@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api")
 public class SelectGameController {
@@ -17,9 +19,9 @@ public class SelectGameController {
         this.selectGameService = selectGameService;
     }
 
-    @PostMapping("/setArtist")
-    public ResponseEntity<SelectGameDto<ArtistDto>> startArtistGame(@RequestBody String name){
-        SelectGameDto<ArtistDto> result = selectGameService.artistSelect(name);
+    @PostMapping("/searchArtist")
+    public ResponseEntity<SelectGameDto<ArtistDto>> searchArtist(@RequestBody Map<String, String> name){
+        SelectGameDto<ArtistDto> result = selectGameService.searchArtist(name.get("text"));
 
         return ResponseEntity.ok(result);
     }
