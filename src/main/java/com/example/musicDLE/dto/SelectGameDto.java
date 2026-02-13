@@ -8,8 +8,7 @@ public class SelectGameDto<T> {
 
     private enum SearchStatus {
         NOT_FOUND,
-        MULTIPLE_RESULTS,
-        SINGLE_RESULT
+        FOUND
     }
 
     private SearchStatus status;
@@ -20,9 +19,8 @@ public class SelectGameDto<T> {
     public SelectGameDto(List<T> results){
         this.results = (results == null) ? List.of() : results;
 
-        if(this.results.isEmpty() || results == null) this.status = SearchStatus.NOT_FOUND;
-        if(this.results.size() == 1) this.status = SearchStatus.SINGLE_RESULT;
-        if(this.results.size() > 1) this.status = SearchStatus.MULTIPLE_RESULTS;
+        if(results == null || this.results.isEmpty()) this.status = SearchStatus.NOT_FOUND;
+        else this.status = SearchStatus.FOUND;
     }
 
     public SearchStatus getStatus() {

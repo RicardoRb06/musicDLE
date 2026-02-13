@@ -14,7 +14,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 @Service
-public class SelectGameService {
+public class SearchService {
 
     private final Gson gson = new Gson();
 
@@ -23,7 +23,6 @@ public class SelectGameService {
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://api.deezer.com/search/artist?q=" + name + "&limit=5")).build();
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
             Type responseType = new TypeToken<DefaulsResponseDto<ArtistDto>>(){}.getType();
 
             DefaulsResponseDto<ArtistDto> data = gson.fromJson(response.body(), responseType);

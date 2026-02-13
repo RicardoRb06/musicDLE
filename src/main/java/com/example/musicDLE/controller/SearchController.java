@@ -2,8 +2,7 @@ package com.example.musicDLE.controller;
 
 import com.example.musicDLE.dto.API.ArtistDto;
 import com.example.musicDLE.dto.SelectGameDto;
-import com.example.musicDLE.service.SelectGameService;
-import org.springframework.http.HttpStatus;
+import com.example.musicDLE.service.SearchService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,11 +10,11 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
-public class SelectGameController {
+public class SearchController {
 
-    private SelectGameService selectGameService;
+    private SearchService selectGameService;
 
-    public SelectGameController(SelectGameService selectGameService) {
+    public SearchController(SearchService selectGameService) {
         this.selectGameService = selectGameService;
     }
 
