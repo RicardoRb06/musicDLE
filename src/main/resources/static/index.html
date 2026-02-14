@@ -7,13 +7,17 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="searchInput">
+    <h1>Music <a style="color: #1ED760;">DLE</a></h1>
+    <div id="searchInput">
         <input type="text" id="text">
-        <select name="typeText" id="typeText">
-            <option value="artist">Artista</option>
-            <option value="album">Álbum</option>
-        </select>
-        <button onclick="submit()">começar</button>
+
+        <div id="actions">
+            <select name="typeText" id="typeText">
+                <option value="artist">Artista</option>
+                <option value="album">Álbum</option>
+            </select>
+            <button id="startButton" onclick="submit()"></button>
+        </div>
     </div>
     <ul id="searchResults"></ul>
 
