@@ -30,7 +30,7 @@ async function search(){
     }
         
 
-    const response = await fetch(url, {
+    const res = await fetch(url, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -39,7 +39,7 @@ async function search(){
             text: text
         })
     });
-    await response.json();
+    const response = await res.json();
     console.log(response)
 
     if(text !== inputText.value) return;
