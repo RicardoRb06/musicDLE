@@ -1,0 +1,98 @@
+.searchBar {
+    background-color: #2A2A2A;
+    width: 100%;
+    border-radius: 28px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: nowrap;
+}
+
+.searchBar input {
+    flex: 1;
+    min-width: 0;
+    background: none;
+    border: none;
+    outline: none;
+    font-size: 16px;
+}
+
+.searchBar select {
+    background-color: #2A2A2A;
+    border: none;
+    outline: none;
+    border-radius: 18px;
+    padding: 8px 34px 8px 12px;
+    font-family: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    color: inherit;
+
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    min-width: 90px;
+    max-width: 130px;
+
+    /* seta */
+    background-image: linear-gradient(45deg, transparent 50%, #aaa 50%),
+                      linear-gradient(135deg, #aaa 50%, transparent 50%);
+    background-position: calc(100% - 16px) center,
+                         calc(100% - 11px) center;
+    background-size: 5px 5px;
+    background-repeat: no-repeat;
+}
+
+.searchBar button {
+    width: 38px;
+    height: 38px;
+    background-color: #1ED760;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    transition: 0.15s;
+}
+
+.searchBar button::before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 10px solid #121212;
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    margin-left: 2px;
+}
+
+.searchBar button:hover {
+    filter: brightness(1.1);
+    transform: scale(1.05);
+}
+
+@media (min-width: 768px) {
+    .searchBar input {
+        padding: 14px 20px;
+    }
+
+    .searchBar button {
+        width: 42px;
+        height: 42px;
+    }
+
+    .searchBar button::before {
+        border-left: 12px solid #121212;
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+    }
+
+    .searchBar select {
+        min-width: 140px;
+        font-size: 15px;
+        padding: 10px 36px 10px 14px;
+    }
+}
