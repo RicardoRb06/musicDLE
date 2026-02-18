@@ -69,8 +69,8 @@ searchBar.addEventListener("click", function(event) {
     }
 
     if (event.target.id === "startButton") {
-        if (!gameData) return;
         console.log(gameData);
+        startGame();
     }
 });
 
@@ -135,6 +135,16 @@ async function search(){
         return;
     }
     searchList.innerHTML = `<li style="text-align: center; border-bottom: 0; margin-bottom: 0; padding-bottom: 0;">Nenhum resultado encontrado</li>`;
+}
+
+
+
+// --- start game --- //
+
+function startGame(){
+    if (!gameData || gameData.length !== 3) return;
+
+    window.location.href = `/${select.value}?id?=${gameData[0]}`;
 }
 
 // --- funçoes auxiliares --- //
