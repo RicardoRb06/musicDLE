@@ -1,5 +1,6 @@
 package com.example.musicDLE.service;
 
+import com.example.musicDLE.dto.API.AlbumDto;
 import com.example.musicDLE.dto.API.ArtistDto;
 import com.example.musicDLE.dto.API.DefaulsResponseDto;
 import com.example.musicDLE.dto.SearchDto;
