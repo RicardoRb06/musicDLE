@@ -1,6 +1,43 @@
 const inputText = document.getElementById(`text`);
 const select = document.getElementById(`typeText`);
-let time
+const searchBar = document.getElementById(`searchInput`);
+const searchResults = document.getElementById(`searchResults`);
+
+let artists = [`Travis Scott...`, `Imagine Dragons...`, `The Weekend...`];
+let album = [`AstroWorld...`, `Evolve...`, `After Hours...`];
+let selectPreviousValue = select.value;
+let time;
+let artist;
+
+setInterval(changePlaceholder, 3000);
+
+function changePlaceholder(){
+    let placeholder = inputText.placeholder;
+        switch (select.value) {
+            case `artist`:
+                if(placeholder !== ``) artists.push(placeholder);
+                inputText.placeholder = artists.shift();
+                break;
+        
+            case `album`:
+                if(placeholder !== ``) album.push(placeholder);
+                inputText.placeholder = album.shift();
+                break;
+    }
+}
+
+searchResults.addEventListener(`click`, function (event){
+    const button = event.target.closest(`button`);
+    if (!button) return;
+    artist = button;
+
+    searchBar.innerHTML = `
+        <img src="${button.getAttribute("picture")}">
+        ${button.getAttribute("name")}
+        <button id="clearButton"></button>
+        <button id="startButton"></button>
+    `;
+})
 
 inputText.addEventListener(`input`, async function() {
     const text = inputText.value;
@@ -14,6 +51,18 @@ inputText.addEventListener(`input`, async function() {
 
 select.addEventListener(`change`, function(){
     inputText.dispatchEvent(new Event(`input`));
+
+    switch (selectPreviousValue){
+        case `artist`:
+            artists.push(inputText.placeholder);
+            break;
+        case `album`:
+            album.push(inputText.placeholder);
+            break;
+    }
+
+    changePlaceholder();
+    selectPreviousValue = select.value;
 });
 
 
@@ -51,7 +100,7 @@ async function search(){
         response.results.forEach(artist => {
             lista += 
                     `<li>
-                        <button value="${artist.id}">
+                        <button id="${artist.id}" picture="${artist.picture}" name="${artist.name}">
                             <img src="${artist.picture}">
                             ${artist.name}
                         </button>

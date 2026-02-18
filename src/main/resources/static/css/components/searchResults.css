@@ -11,13 +11,13 @@
     list-style: none;
 }
 
-#searchResults li {
+.searchResults li {
     padding-bottom: 4px;
     margin-bottom: 4px;
     border-bottom: #3A3A3A 1px solid;;
 }
 
-#searchResults button {
+.searchResults button {
     width: 100%;
     display: flex;
     align-items: center;
@@ -39,12 +39,12 @@
 }
 
 
-#searchResults button:hover {
+.searchResults button:hover {
     background: #3A3A3A;
     transform: scale(1.01);
 }
 
-#searchResults img {
+.searchResults img {
     width: 52px;
     height: 52px;
     border-radius: 50%;
