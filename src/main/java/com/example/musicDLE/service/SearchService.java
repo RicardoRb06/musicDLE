@@ -2,7 +2,7 @@ package com.example.musicDLE.service;
 
 import com.example.musicDLE.dto.API.ArtistDto;
 import com.example.musicDLE.dto.API.DefaulsResponseDto;
-import com.example.musicDLE.dto.SelectGameDto;
+import com.example.musicDLE.dto.SearchDto;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.springframework.stereotype.Service;
@@ -18,7 +18,7 @@ public class SearchService {
 
     private final Gson gson = new Gson();
 
-    public SelectGameDto<ArtistDto> searchArtist(String name){
+    public SearchDto<ArtistDto> searchArtist(String name){
         try{
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://api.deezer.com/search/artist?q=" + name + "&limit=5")).build();
@@ -26,10 +26,25 @@ public class SearchService {
             Type responseType = new TypeToken<DefaulsResponseDto<ArtistDto>>(){}.getType();
 
             DefaulsResponseDto<ArtistDto> data = gson.fromJson(response.body(), responseType);
-            return new SelectGameDto<ArtistDto>(data.data);
+            return new SearchDto<ArtistDto>(data.data);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return new SelectGameDto<>(java.util.List.of());
+            return new SearchDto<>(java.util.List.of());
+        }
+    }
+
+    public SearchDto<ArtistDto> searchAlbum(String name){
+        try{
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://api.deezer.com/search/artist?q=" + name + "&limit=5")).build();
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            Type responseType = new TypeToken<DefaulsResponseDto<ArtistDto>>(){}.getType();
+
+            DefaulsResponseDto<AlbumDto> data = gson.fromJson(response.body(), responseType);
+            return new SearchDto<AlbumDto>(data.data);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return new SearchDto<>(java.util.List.of());
         }
     }
 }

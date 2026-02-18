@@ -1,10 +1,8 @@
 package com.example.musicDLE.dto;
 
-import com.example.musicDLE.dto.API.DefaulsResponseDto;
-
 import java.util.List;
 
-public class SelectGameDto<T> {
+public class SearchDto<T> {
 
     private enum SearchStatus {
         NOT_FOUND,
@@ -14,9 +12,9 @@ public class SelectGameDto<T> {
     private SearchStatus status;
     private List<T> results;
 
-    public SelectGameDto() {}
+    public SearchDto() {}
 
-    public SelectGameDto(List<T> results){
+    public SearchDto(List<T> results){
         this.results = (results == null) ? List.of() : results;
 
         if(results == null || this.results.isEmpty()) this.status = SearchStatus.NOT_FOUND;
