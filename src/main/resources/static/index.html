@@ -15,11 +15,18 @@
 
     <div class="search">
         <div class="searchBar" id="searchInput">
-            <select id="typeText">
-                <option value="artist">Artista</option>
-                <option value="album">Álbum</option>
-            </select>
-            <input type="text" id="text" placeholder="">
+            <div class="noInput">
+                <select id="typeText">
+                    <option value="artist">Artista</option>
+                    <option value="album">Álbum</option>
+                </select>
+                <div class="Input">
+                    <img id="selectedImg">
+                    <span id="selectedName"></span>
+                    <button id="clearButton"></button>
+                </div>
+                <input type="text" id="text" placeholder="">
+            </div>
             <button id="startButton"></button>
         </div>
         <ul class="searchResults" id="searchResults"></ul>
