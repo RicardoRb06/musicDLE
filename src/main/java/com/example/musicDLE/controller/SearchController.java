@@ -19,7 +19,7 @@ public class SearchController {
         this.searchService = searchService;
     }
 
-    @PostMapping("/Artist")
+    @GetMapping("/Artist")
     public ResponseEntity<SearchDto<ArtistDto>> searchArtist(@RequestBody Map<String, String> name){
         SearchDto<ArtistDto> result = searchService.searchArtist(name.get("text"));
         return ResponseEntity.ok(result);
