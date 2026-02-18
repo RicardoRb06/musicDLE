@@ -39,7 +39,7 @@ public class SearchService {
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://api.deezer.com/search/album?q=" + name + "&limit=5")).build();
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            Type responseType = new TypeToken<DefaulsResponseDto<ArtistDto>>(){}.getType();
+            Type responseType = new TypeToken<DefaulsResponseDto<AlbumDto>>(){}.getType();
 
             DefaulsResponseDto<AlbumDto> data = gson.fromJson(response.body(), responseType);
             return new SearchDto<AlbumDto>(data.data);

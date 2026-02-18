@@ -104,7 +104,7 @@ async function search(){
         
 
     const res = await fetch(url, {
-        method: "GET",
+        method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
@@ -165,8 +165,8 @@ function createArtistList(response){
 
 function createAlbumList(response){
     return `<li>
-                <button id="${response.id}" picture="${response.picture}" name="${response.title}">
-                    <img src="${response.picture}">
+                <button id="${response.id}" picture="${response.cover}" name="${response.title}">
+                    <img src="${response.cover}">
                     ${response.title}
                 </button>
             </li>`
