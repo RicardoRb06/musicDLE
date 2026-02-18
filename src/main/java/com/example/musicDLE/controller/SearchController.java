@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/search")
 public class SearchController {
 
     private SearchService selectGameService;
@@ -18,10 +18,9 @@ public class SearchController {
         this.selectGameService = selectGameService;
     }
 
-    @PostMapping("/searchArtist")
+    @PostMapping("/Artist")
     public ResponseEntity<SelectGameDto<ArtistDto>> searchArtist(@RequestBody Map<String, String> name){
         SelectGameDto<ArtistDto> result = selectGameService.searchArtist(name.get("text"));
-
         return ResponseEntity.ok(result);
     }
 }

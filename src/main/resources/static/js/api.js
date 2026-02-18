@@ -90,12 +90,12 @@ inputText.addEventListener(`input`, async function() {
 async function search(){
     const text = inputText.value;
     const type = select.value;
-    let url = `api/`;
+    let url = `search/`;
 
     
     switch (type) {
         case `artist`:
-            url += `searchArtist` 
+            url += `Artist` 
             break;
     }
         
