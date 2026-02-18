@@ -97,11 +97,14 @@ async function search(){
         case `artist`:
             url += `Artist` 
             break;
+        case `album`:
+            url += `Album` 
+            break;
     }
         
 
     const res = await fetch(url, {
-        method: "POST",
+        method: "GET",
         headers: {
             "Content-Type": "application/json"
         },
@@ -117,14 +120,15 @@ async function search(){
     if(response.status === `FOUND`){
         let lista = ``;
 
-        response.results.forEach(artist => {
-            lista += 
-                    `<li>
-                        <button id="${artist.id}" picture="${artist.picture}" name="${artist.name}">
-                            <img src="${artist.picture}">
-                            ${artist.name}
-                        </button>
-                    </li>`
+        response.results.forEach(response => {
+            switch (type) {
+                case `artist`:
+                    lista += createArtistList(response);
+                    break;
+                case `album`:
+                    lista += createAlbumList(response); 
+                    break;
+            }
         });
 
         searchList.innerHTML = lista;
@@ -148,4 +152,22 @@ function changeSearchBarView(){
 function createSelectedMode(gameData){
     document.getElementById(`selectedImg`).setAttribute(`src`, gameData[1]);
     document.getElementById(`selectedName`).textContent = gameData[2];
+}
+
+function createArtistList(response){
+    return `<li>
+                <button id="${response.id}" picture="${response.picture}" name="${response.name}">
+                    <img src="${response.picture}">
+                    ${response.name}
+                </button>
+            </li>`
+}
+
+function createAlbumList(response){
+    return `<li>
+                <button id="${response.id}" picture="${response.picture}" name="${response.title}">
+                    <img src="${response.picture}">
+                    ${response.title}
+                </button>
+            </li>`
 }

@@ -27,7 +27,7 @@ public class SearchController {
 
     @GetMapping("/Album")
     public ResponseEntity<SearchDto<AlbumDto>> searchAlbum(@RequestBody Map<String, String> name){
-        SearchDto<ArtistDto> result = searchService.searchAlbum(name.get("text"));
+        SearchDto<AlbumDto> result = searchService.searchAlbum(name.get("text"));
         return ResponseEntity.ok(result);
     }
 }
