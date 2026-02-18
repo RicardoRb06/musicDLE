@@ -14,13 +14,13 @@ h1 {
     margin-top: 12vh;
 }
 
-.searchBar {
+.search{
     width: 90%;
 }
 
 
 @media (min-width: 768px) {
-    .searchBar {
+    .search{
         width: 50%;
     }
 }

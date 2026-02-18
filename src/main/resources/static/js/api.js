@@ -8,7 +8,7 @@ inputText.addEventListener(`input`, async function() {
     if(text.length > 2){
         time = setTimeout(search, 500);
     }else{
-        document.getElementById(`searchResults`).innerHTML = ``;
+        document.getElementById(`searchResults`).style.display = 'none';
     }
 });
 
@@ -41,10 +41,11 @@ async function search(){
     });
     const response = await res.json();
     console.log(response)
-
+    
+    const searchList = document.getElementById(`searchResults`);
+    searchList.style.display = 'block';
     if(text !== inputText.value) return;
     if(response.status === `FOUND`){
-        const searchList = document.getElementById(`searchResults`);
         let lista = ``;
 
         response.results.forEach(artist => {
@@ -60,5 +61,5 @@ async function search(){
         searchList.innerHTML = lista;
         return;
     }
-    document.getElementById(`searchResults`).innerHTML = `Nenhum resultado encontrado`;
+    searchList.innerHTML = `<li style="text-align: center; border-bottom: 0; margin-bottom: 0; padding-bottom: 0;">Nenhum resultado encontrado</li>`;
 }

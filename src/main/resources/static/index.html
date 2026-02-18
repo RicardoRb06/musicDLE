@@ -5,21 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/components/searchbar.css">
+    <link rel="stylesheet" href="css/components/search.css">
+    <link rel="stylesheet" href="css/components/searchBar.css">
+    <link rel="stylesheet" href="css/components/searchResults.css">
     <link rel="stylesheet" href="css/layout/homePage.css">
 </head>
 <body>
     <h1>Music <a style="color: #1ED760;">DLE</a></h1>
 
-    <div class="searchBar" id="searchInput">
-        <select id="typeText">
-            <option value="artist">Artista</option>
-            <option value="album">Álbum</option>
-        </select>
-        <input type="text" id="text" placeholder="teste">
-        <button id="startButton"></button>
+    <div class="search">
+        <div class="searchBar" id="searchInput">
+            <select id="typeText">
+                <option value="artist">Artista</option>
+                <option value="album">Álbum</option>
+            </select>
+            <input type="text" id="text" placeholder="teste">
+            <button id="startButton"></button>
+        </div>
+        <ul class="searchResults" id="searchResults"></ul>
     </div>
-    <ul class="box" id="searchResults"></ul>
+    
+
+    
+    <p style="color: #1ED760;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat possimus ullam incidunt veritatis deleniti necessitatibus praesentium in illo sint, quisquam molestiae, ipsam blanditiis voluptate recusandae iure quod? Beatae, odio eaque.</p>
 
     <script src="js/api.js"></script>
 </body>
