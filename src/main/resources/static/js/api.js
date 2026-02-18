@@ -3,11 +3,14 @@ const select = document.getElementById(`typeText`);
 const searchBar = document.getElementById(`searchInput`);
 const searchResults = document.getElementById(`searchResults`);
 
+let selectPreviousValue = select.value;
+let gameData = null;
+
+
+// --- funçöes relacionadas a placeholder --- //
 let artists = [`Travis Scott...`, `Imagine Dragons...`, `The Weekend...`];
 let album = [`AstroWorld...`, `Evolve...`, `After Hours...`];
-let selectPreviousValue = select.value;
 let time;
-let artist;
 
 setInterval(changePlaceholder, 3000);
 
@@ -26,29 +29,6 @@ function changePlaceholder(){
     }
 }
 
-searchResults.addEventListener(`click`, function (event){
-    const button = event.target.closest(`button`);
-    if (!button) return;
-    artist = button;
-
-    searchBar.innerHTML = `
-        <img src="${button.getAttribute("picture")}">
-        ${button.getAttribute("name")}
-        <button id="clearButton"></button>
-        <button id="startButton"></button>
-    `;
-})
-
-inputText.addEventListener(`input`, async function() {
-    const text = inputText.value;
-    clearTimeout(time);
-    if(text.length > 2){
-        time = setTimeout(search, 500);
-    }else{
-        document.getElementById(`searchResults`).style.display = 'none';
-    }
-});
-
 select.addEventListener(`change`, function(){
     inputText.dispatchEvent(new Event(`input`));
 
@@ -65,6 +45,54 @@ select.addEventListener(`change`, function(){
     selectPreviousValue = select.value;
 });
 
+
+
+// --- funções relacionadas com botões --- //
+searchResults.addEventListener(`click`, function (event){
+    const button = event.target.closest(`button`);
+    if (!button) return;
+
+    searchBar.innerHTML = `
+        <img src="${button.getAttribute("picture")}">
+        ${button.getAttribute("name")}
+        <button id="clearButton"></button>
+        <button id="startButton"></button>
+    `;
+
+    gameData = [button.getAttribute("id"), button.getAttribute("picture"), button.getAttribute("name")];
+});
+
+searchBar.addEventListener("click", function(event) {
+    if (event.target.id === "clearButton") {
+        searchBar.innerHTML = `
+            <select id="typeText">
+                <option value="artist">Artista</option>
+                <option value="album">Álbum</option>
+            </select>
+            <input type="text" id="text" placeholder="">
+            <button id="startButton"></button>
+        `;
+        gameData = null;
+    }
+
+    if (event.target.id === "startButton") {
+        if (!gameData) return;
+        console.log(gameData);
+    }
+});
+
+
+
+// --- funções relacionadas a pesquisa da api --- //
+inputText.addEventListener(`input`, async function() {
+    const text = inputText.value;
+    clearTimeout(time);
+    if(text.length > 2){
+        time = setTimeout(search, 500);
+    }else{
+        document.getElementById(`searchResults`).style.display = 'none';
+    }
+});
 
 async function search(){
     const text = inputText.value;
