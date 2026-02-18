@@ -18,8 +18,9 @@ h1 {
     width: 90%;
 }
 
-.Input{
+#selectedMode{
     display: none;
+    align-items: center;
 }
 
 @media (min-width: 768px) {

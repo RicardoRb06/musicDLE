@@ -2,9 +2,10 @@ const inputText = document.getElementById(`text`);
 const select = document.getElementById(`typeText`);
 const searchBar = document.getElementById(`searchInput`);
 const searchResults = document.getElementById(`searchResults`);
+const searchList = document.getElementById(`searchResults`);
 
 let selectPreviousValue = select.value;
-let gameData = null;
+let gameData = []; // 0 -> id, 1 -> picture, 2 -> name
 
 
 // --- funçöes relacionadas a placeholder --- //
@@ -52,27 +53,19 @@ searchResults.addEventListener(`click`, function (event){
     const button = event.target.closest(`button`);
     if (!button) return;
 
-    searchBar.innerHTML = `
-        <img src="${button.getAttribute("picture")}">
-        ${button.getAttribute("name")}
-        <button id="clearButton"></button>
-        <button id="startButton"></button>
-    `;
+    gameData[0] = button.getAttribute("id");
+    gameData[1] = button.getAttribute("picture");
+    gameData[2] = button.getAttribute("name");
 
-    gameData = [button.getAttribute("id"), button.getAttribute("picture"), button.getAttribute("name")];
+    createSelectedMode(gameData);
+    changeSearchBarView();
+    searchList.style.display = 'none';
 });
 
 searchBar.addEventListener("click", function(event) {
     if (event.target.id === "clearButton") {
-        searchBar.innerHTML = `
-            <select id="typeText">
-                <option value="artist">Artista</option>
-                <option value="album">Álbum</option>
-            </select>
-            <input type="text" id="text" placeholder="">
-            <button id="startButton"></button>
-        `;
-        gameData = null;
+        changeSearchBarView();
+        gameData = [];
     }
 
     if (event.target.id === "startButton") {
@@ -119,7 +112,6 @@ async function search(){
     const response = await res.json();
     console.log(response)
     
-    const searchList = document.getElementById(`searchResults`);
     searchList.style.display = 'block';
     if(text !== inputText.value) return;
     if(response.status === `FOUND`){
@@ -139,4 +131,21 @@ async function search(){
         return;
     }
     searchList.innerHTML = `<li style="text-align: center; border-bottom: 0; margin-bottom: 0; padding-bottom: 0;">Nenhum resultado encontrado</li>`;
+}
+
+// --- funçoes auxiliares --- //
+
+function changeSearchBarView(){
+    const searchMode = document.getElementById("searchMode");
+    const selectedMode = document.getElementById("selectedMode");
+
+    const hidden = getComputedStyle(selectedMode).display === "none";
+
+    selectedMode.style.display = hidden ? "flex" : "none";
+    searchMode.style.display = hidden ? "none" : "flex";
+}
+
+function createSelectedMode(gameData){
+    document.getElementById(`selectedImg`).setAttribute(`src`, gameData[1]);
+    document.getElementById(`selectedName`).textContent = gameData[2];
 }

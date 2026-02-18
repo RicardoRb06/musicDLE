@@ -14,20 +14,20 @@
     <h1>Music <a style="color: #1ED760;">DLE</a></h1>
 
     <div class="search">
-        <div class="searchBar" id="searchInput">
-            <div class="noInput">
+        <div id="searchInput">
+            <div class="searchBar" id="searchMode">
                 <select id="typeText">
                     <option value="artist">Artista</option>
                     <option value="album">Álbum</option>
                 </select>
-                <div class="Input">
-                    <img id="selectedImg">
-                    <span id="selectedName"></span>
-                    <button id="clearButton"></button>
-                </div>
                 <input type="text" id="text" placeholder="">
             </div>
-            <button id="startButton"></button>
+            <div class="searchBar" id="selectedMode">
+                <img id="selectedImg">
+                <span id="selectedName"></span>
+                <button id="clearButton"></button>
+                <button id="startButton"></button>
+            </div>
         </div>
         <ul class="searchResults" id="searchResults"></ul>
     </div>
