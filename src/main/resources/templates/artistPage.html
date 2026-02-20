@@ -4,30 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../static/css/base.css">
-    <link rel="stylesheet" href="../static/css/components/mediaBox.css">
-    <link rel="stylesheet" href="../static/css/components/button.css">
-    <link rel="stylesheet" href="../static/css/layout/artistPage.css">
+    <title th:text="${name}">Document</title>
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/components/mediaBox.css}">
+    <link rel="stylesheet" th:href="@{/css/components/button.css}">
+    <link rel="stylesheet" th:href="@{/css/layout/artistPage.css}">
 </head>
 
 <body>
     <div class="media-container">
         <div class="spotify-card">
             <div class="card-image">
-                <img src="https://picsum.photos/300">
+                <img th:src="${picture}">
             </div>
             <div class="card-info">
-                <h3 class="card-title">Top Hits 2026</h3>
+                <h3 class="card-title" th:text="${name}"></h3>
                 <p class="card-description">Artista</p>
             </div>
         </div>
     </div>
 
     <button>Musica</button>
-    <button>aaaaaaa</button>
     
-    <script src="../static/js/artistPage.js"></script>
+    <script th:src="@{/js/artistHome.js}"></script>
 </body>
 
 </html>
