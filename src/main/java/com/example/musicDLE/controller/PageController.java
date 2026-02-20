@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Controller
 public class PageController {
 
-    ArtistService artistService;
+    private ArtistService artistService;
+
+    public PageController(ArtistService artistService){this.artistService = artistService;}
 
     @GetMapping("/artist/{id}")
     public String artista(@PathVariable int id){

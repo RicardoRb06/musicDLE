@@ -6,12 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/artist")
+@RequestMapping("/search/artist")
 public class ArtistController {
-
-    @GetMapping("/{id}")
-    public String artista(@PathVariable String id){
-        System.out.println(id);
-        return "artistPage";
-    }
 }

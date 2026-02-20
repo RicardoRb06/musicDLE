@@ -25,7 +25,7 @@ public class ArtistService {
             HttpResponse<String> response = this.client.send(request, HttpResponse.BodyHandlers.ofString());
             Type responseType = new TypeToken<ArtistDto>(){}.getType();
 
-            return gson.fromJson(response.body(), responseType);
+            return this.gson.fromJson(response.body(), responseType);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return new ArtistDto();
