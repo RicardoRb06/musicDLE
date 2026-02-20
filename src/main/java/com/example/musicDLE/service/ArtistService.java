@@ -1,8 +1,6 @@
 package com.example.musicDLE.service;
 
 import com.example.musicDLE.dto.API.ArtistDto;
-import com.example.musicDLE.dto.API.DefaulsResponseDto;
-import com.example.musicDLE.dto.SearchDto;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.springframework.stereotype.Service;

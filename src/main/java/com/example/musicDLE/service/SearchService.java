@@ -2,7 +2,7 @@ package com.example.musicDLE.service;
 
 import com.example.musicDLE.dto.API.AlbumDto;
 import com.example.musicDLE.dto.API.ArtistDto;
-import com.example.musicDLE.dto.API.DefaulsResponseDto;
+import com.example.musicDLE.dto.API.DefaultsResponseDto;
 import com.example.musicDLE.dto.SearchDto;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -24,9 +24,9 @@ public class SearchService {
         try{
             HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://api.deezer.com/search/artist?q=" + name + "&limit=5")).build();
             HttpResponse<String> response = this.client.send(request, HttpResponse.BodyHandlers.ofString());
-            Type responseType = new TypeToken<DefaulsResponseDto<ArtistDto>>(){}.getType();
+            Type responseType = new TypeToken<DefaultsResponseDto<ArtistDto>>(){}.getType();
 
-            DefaulsResponseDto<ArtistDto> data = gson.fromJson(response.body(), responseType);
+            DefaultsResponseDto<ArtistDto> data = gson.fromJson(response.body(), responseType);
             return new SearchDto<ArtistDto>(data.data);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -38,9 +38,9 @@ public class SearchService {
         try{
             HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://api.deezer.com/search/album?q=" + name + "&limit=5")).build();
             HttpResponse<String> response = this.client.send(request, HttpResponse.BodyHandlers.ofString());
-            Type responseType = new TypeToken<DefaulsResponseDto<AlbumDto>>(){}.getType();
+            Type responseType = new TypeToken<DefaultsResponseDto<AlbumDto>>(){}.getType();
 
-            DefaulsResponseDto<AlbumDto> data = gson.fromJson(response.body(), responseType);
+            DefaultsResponseDto<AlbumDto> data = gson.fromJson(response.body(), responseType);
             return new SearchDto<AlbumDto>(data.data);
         } catch (Exception e) {
             System.out.println(e.getMessage());
