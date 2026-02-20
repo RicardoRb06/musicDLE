@@ -17,7 +17,7 @@ public class PageController {
     @GetMapping("/artist/{id}")
     public String artista(@PathVariable int id){
         ArtistDto artist = artistService.searchArtist(id);
-        System.out.println(artist);
+        System.out.println(artist.getName());
         return "artistPage";
     }
 }
