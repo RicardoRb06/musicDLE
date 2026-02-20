@@ -17,13 +17,13 @@ import java.net.http.HttpResponse;
 @Service
 public class SearchService {
 
+    HttpClient client = HttpClient.newHttpClient();
     private final Gson gson = new Gson();
 
     public SearchDto<ArtistDto> searchArtist(String name){
         try{
-            HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://api.deezer.com/search/artist?q=" + name + "&limit=5")).build();
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            HttpResponse<String> response = this.client.send(request, HttpResponse.BodyHandlers.ofString());
             Type responseType = new TypeToken<DefaulsResponseDto<ArtistDto>>(){}.getType();
 
             DefaulsResponseDto<ArtistDto> data = gson.fromJson(response.body(), responseType);
