@@ -144,7 +144,7 @@ async function search(){
 function startGame(){
     if (!gameData || gameData.length !== 3) return;
 
-    window.location.href = `/${select.value}?id?=${gameData[0]}`;
+    window.location.href = `/${select.value}/${gameData[0]}`;
 }
 
 // --- funçoes auxiliares --- //
