@@ -23,7 +23,7 @@ public class PageController {
         return "artistPage";
     }
 
-    @GetMapping("/artist/{id}/track")
+    @GetMapping("/artist/{id}/randomMusic")
     public String artistGame(@PathVariable int id, Model model){
         ArtistDto artist = artistService.searchArtist(id);
         model.addAttribute("name", artist.getName());
