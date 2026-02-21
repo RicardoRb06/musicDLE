@@ -1,3 +1,5 @@
+
+
 const inputText = document.getElementById(`text`);
 const select = document.getElementById(`typeText`);
 const searchBar = document.getElementById(`searchInput`);

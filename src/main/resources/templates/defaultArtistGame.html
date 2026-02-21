@@ -5,8 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title th:text="${name}">Document</title>
     <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/components/mediaBox.css}">    
+    <link rel="stylesheet" th:href="@{/css/components/search.css}">    
+    <link rel="stylesheet" th:href="@{/css/components/searchBar.css}">    
+    <link rel="stylesheet" th:href="@{/css/components/searchResults.css}">    
+    <link rel="stylesheet" th:href="@{/css/layout/defaultArtistGame.css}">    
 </head>
 <body>
-    teste
+    <div class="media-container">
+        <div class="spotify-card">
+            <div class="card-image">
+                <img th:src="${picture}">
+            </div>
+            <div class="card-info">
+                <h3 class="card-title" th:text="${name}"></h3>
+                <p class="card-description">Artista</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="search">
+        <div id="searchInput">
+            <div class="searchBar">
+                <input type="text" id="text" placeholder="">
+                <button id="startButton"></button> 
+            </div>
+        </div>
+        <ul class="searchResults" id="searchResults"></ul>
+    </div>
 </body>
 </html>

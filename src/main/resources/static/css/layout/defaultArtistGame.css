@@ -1,0 +1,21 @@
+*{
+    box-sizing: border-box;
+}
+
+.media-container {
+    margin-top: 12vh;
+    width: 45%;
+}
+
+button{
+    margin-bottom: 2vh;
+    width: 40vh;
+}
+
+@media (min-width: 768px) {
+    .media-container{
+        margin-top: 2vh;
+        margin-bottom: 2vh;
+        width: 15%;
+    }
+}
