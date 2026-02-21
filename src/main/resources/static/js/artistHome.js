@@ -1,3 +1,5 @@
-document.getElementById("randomMusic").addEventListener("click", function() {
-    window.location.href = window.location.href + "/trackRandom";
+document.querySelectorAll("button").forEach(button => {
+    button.addEventListener("click", function() {
+        window.location.href = window.location.href + "/" + button.value;
+    });
 });
