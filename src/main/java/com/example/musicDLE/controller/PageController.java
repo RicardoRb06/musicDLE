@@ -1,7 +1,6 @@
 package com.example.musicDLE.controller;
 
 import com.example.musicDLE.dto.API.ArtistDto;
-import com.example.musicDLE.dto.SearchDto;
 import com.example.musicDLE.service.ArtistService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,11 +15,20 @@ public class PageController {
     public PageController(ArtistService artistService){this.artistService = artistService;}
 
     @GetMapping("/artist/{id}")
-    public String artista(@PathVariable int id, Model model){
+    public String artist(@PathVariable int id, Model model){
         ArtistDto artist = artistService.searchArtist(id);
         model.addAttribute("name", artist.getName());
-        model.addAttribute("picture", artist.getPicture());
+        model.addAttribute("picture", artist.getPicture_xl());
 
         return "artistPage";
+    }
+
+    @@GetMapping("/artist/{id}/track")
+    public String artistGame(@PathVariable int id, Model model){
+        ArtistDto artist = artistService.searchArtist(id);
+        model.addAttribute("name", artist.getName());
+        model.addAttribute("picture", artist.getPicture_xl());
+
+        return "defaultArtistGame";
     }
 }
