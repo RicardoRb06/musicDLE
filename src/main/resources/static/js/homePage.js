@@ -60,8 +60,8 @@ searchResults.addEventListener(`click`, function (event){
     gameData[1] = button.getAttribute("picture");
     gameData[2] = button.getAttribute("name");
 
-    createSelectedMode(gameData);
-    changeSearchBarView();
+    searchClass.createSelectedMode(gameData);
+    searchClass.changeSearchBarView();
     searchList.style.display = 'none';
 });
 

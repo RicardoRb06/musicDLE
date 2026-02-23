@@ -8,6 +8,11 @@ export function changeSearchBarView(){
     searchMode.style.display = hidden ? "none" : "flex";
 }
 
+export function createSelectedMode(gameData){
+    document.getElementById(`selectedImg`).setAttribute(`src`, gameData[1]);
+    document.getElementById(`selectedName`).textContent = gameData[2];
+}
+
 export function createArtistList(response){
     return `<li>
                 <button id="${response.id}" picture="${response.picture}" name="${response.name}">
