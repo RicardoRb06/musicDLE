@@ -17,16 +17,4 @@ public class ArtistService {
     private final Gson gson = new Gson();
     private final HttpClient client = HttpClient.newHttpClient();
 
-    public ArtistDto searchArtist(int id){
-        try{
-            HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://api.deezer.com/artist/" + id)).build();
-            HttpResponse<String> response = this.client.send(request, HttpResponse.BodyHandlers.ofString());
-            Type responseType = new TypeToken<ArtistDto>(){}.getType();
-
-            return gson.fromJson(response.body(), responseType);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return new ArtistDto();
-        }
-    }
 }

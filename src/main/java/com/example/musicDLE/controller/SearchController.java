@@ -21,13 +21,13 @@ public class SearchController {
 
     @PostMapping("/Artist")
     public ResponseEntity<SearchDto<ArtistDto>> searchArtist(@RequestBody Map<String, String> name){
-        SearchDto<ArtistDto> result = searchService.searchArtist(name.get("text"));
+        SearchDto<ArtistDto> result = searchService.searchArtistByName(name.get("text"));
         return ResponseEntity.ok(result);
     }
 
     @PostMapping("/Album")
     public ResponseEntity<SearchDto<AlbumDto>> searchAlbum(@RequestBody Map<String, String> name){
-        SearchDto<AlbumDto> result = searchService.searchAlbum(name.get("text"));
+        SearchDto<AlbumDto> result = searchService.searchAlbumByName(name.get("text"));
         return ResponseEntity.ok(result);
     }
 }
