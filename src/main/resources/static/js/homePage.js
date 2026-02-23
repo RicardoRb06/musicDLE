@@ -1,4 +1,5 @@
-
+import * as searchApiClass from "./components/searchBarApi.js";
+import * as searchClass from "./components/searchBar.js";
 
 const inputText = document.getElementById(`text`);
 const select = document.getElementById(`typeText`);
@@ -92,45 +93,22 @@ inputText.addEventListener(`input`, async function() {
 async function search(){
     const text = inputText.value;
     const type = select.value;
-    let url = `search/`;
-
-    
-    switch (type) {
-        case `artist`:
-            url += `Artist` 
-            break;
-        case `album`:
-            url += `Album` 
-            break;
-    }
-        
-
-    const res = await fetch(url, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            text: text
-        })
-    });
-    const response = await res.json();
-    console.log(response)
+    const response = await searchApiClass.search(type, text);
     
     searchList.style.display = 'block';
     if(text !== inputText.value) return;
     if(response.status === `FOUND`){
         let lista = ``;
 
-        response.results.forEach(response => {
+        response.results.forEach(res => {
             switch (type) {
-                case `artist`:
-                    lista += createArtistList(response);
+                case `Artist`:
+                    lista += searchClass.createArtistList(res);
                     break;
-                case `album`:
-                    lista += createAlbumList(response); 
+                case `Album`:
+                    lista += searchClass.createAlbumList(res); 
                     break;
-            }
+                }
         });
 
         searchList.innerHTML = lista;
@@ -147,39 +125,4 @@ function startGame(){
     if (!gameData || gameData.length !== 3) return;
 
     window.location.href = `/${select.value}/${gameData[0]}`;
-}
-
-// --- funçoes auxiliares --- //
-
-function changeSearchBarView(){
-    const searchMode = document.getElementById("searchMode");
-    const selectedMode = document.getElementById("selectedMode");
-
-    const hidden = getComputedStyle(selectedMode).display === "none";
-
-    selectedMode.style.display = hidden ? "flex" : "none";
-    searchMode.style.display = hidden ? "none" : "flex";
-}
-
-function createSelectedMode(gameData){
-    document.getElementById(`selectedImg`).setAttribute(`src`, gameData[1]);
-    document.getElementById(`selectedName`).textContent = gameData[2];
-}
-
-function createArtistList(response){
-    return `<li>
-                <button id="${response.id}" picture="${response.picture}" name="${response.name}">
-                    <img src="${response.picture}">
-                    ${response.name}
-                </button>
-            </li>`
-}
-
-function createAlbumList(response){
-    return `<li>
-                <button id="${response.id}" picture="${response.cover}" name="${response.title}">
-                    <img src="${response.cover}">
-                    ${response.title}
-                </button>
-            </li>`
 }

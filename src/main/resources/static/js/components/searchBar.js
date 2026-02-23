@@ -1,4 +1,4 @@
-function changeSearchBarView(){
+export function changeSearchBarView(){
     const searchMode = document.getElementById("searchMode");
     const selectedMode = document.getElementById("selectedMode");
 
@@ -8,7 +8,7 @@ function changeSearchBarView(){
     searchMode.style.display = hidden ? "none" : "flex";
 }
 
-function createArtistList(response){
+export function createArtistList(response){
     return `<li>
                 <button id="${response.id}" picture="${response.picture}" name="${response.name}">
                     <img src="${response.picture}">
@@ -17,7 +17,7 @@ function createArtistList(response){
             </li>`
 }
 
-function createAlbumList(response){
+export function createAlbumList(response){
     return `<li>
                 <button id="${response.id}" picture="${response.cover}" name="${response.title}">
                     <img src="${response.cover}">
@@ -26,7 +26,7 @@ function createAlbumList(response){
             </li>`
 }
 
-function createTrackList(response){
+export function createTrackList(response){
     return `<li>
                 <button id="${response.id}" picture="${response.cover}" name="${response.title}">
                     <img src="${response.cover}">
